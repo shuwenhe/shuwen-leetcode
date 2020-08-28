@@ -18,12 +18,12 @@ func main() {
 }
 
 func twoSum(nums []int, target int) []int { // 哈希查找的时间复杂度为 O(1)
-	map1 := make(map[int]int) // 哈希容器map降低时间复杂度
-	for index, val := range nums {
-		if wanted, ok := map1[val]; ok { // 判断val1是否在map中，第一次map中肯定没有，所以ok为false，将数组中的值val和位置pos对应的键值对放入map中
-			return []int{wanted, index}
+	m := make(map[int]int) // 哈希容器map降低时间复杂度
+	for k, v := range nums {
+		if index, ok := m[v]; ok { // 判断val1是否在map中，第一次map中肯定没有，所以ok为false，将数组中的值val和位置pos对应的键值对放入map中
+			return []int{index, k}
 		}
-		map1[target-val] = index // 通过hash表查找使val2 = target - val1 的值，如果找到则返回结果，找不到，则将当前值插入map
+		m[target-v] = k // 通过hash表查找使val2 = target - val1 的值，如果找到则返回结果，找不到，则将当前值插入map
 	}
 	return nil
 }
